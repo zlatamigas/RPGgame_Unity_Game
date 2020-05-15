@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
             cellConainer.transform.GetChild(i).GetComponent<Currentitem>().index = i;
         }
         cellConainer.SetActive(false);
-        if (dataItem.Count !=0)
+        if (dataItem !=null)
         {
             item = dataItem;
         }
