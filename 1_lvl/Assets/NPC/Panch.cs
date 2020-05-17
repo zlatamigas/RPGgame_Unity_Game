@@ -9,7 +9,7 @@ public class Panch : MonoBehaviour
     public bool isanim = false;
     void Start()
     {
-
+        gameObject.SetActive(false);
     }
     void Update()
     {
@@ -17,6 +17,10 @@ public class Panch : MonoBehaviour
         {
             if (key == KeyCode.A)
                 isanim = true;
+            if (key == KeyCode.L)
+            {
+                gameObject.SetActive(true);
+            }
             gameObject.GetComponent<Animator>().SetTrigger(nameofAnim);
         }
     }
