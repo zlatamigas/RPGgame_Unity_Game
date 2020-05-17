@@ -9,18 +9,13 @@ public class Panch : MonoBehaviour
     public bool isanim = false;
     void Start()
     {
-        gameObject.SetActive(false);
     }
     void Update()
     {
         if (Input.GetKeyDown(key))
         {
-            if (key == KeyCode.A)
+            if (key == KeyCode.B)
                 isanim = true;
-            if (key == KeyCode.L)
-            {
-                gameObject.SetActive(true);
-            }
             gameObject.GetComponent<Animator>().SetTrigger(nameofAnim);
         }
     }

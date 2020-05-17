@@ -17,12 +17,12 @@ public class TextShow : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Playerhand"))
             panel.SetActive(true);
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Playerhand"))
             panel.SetActive(false);
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Inventory Manager
   - Enemy
+  - Playerhand
   layers:
   - Default
   - TransparentFX
