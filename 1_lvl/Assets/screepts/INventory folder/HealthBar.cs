@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public int currentLevel = 1;
+    public int currentLevel;
     public void AddHealth(int value)
     {
         GetComponent<Slider>().value += value;

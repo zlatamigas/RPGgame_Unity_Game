@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     public Transform player;
-    public GameObject hp;
-    public float uron;
-    public int health = 100;
+    public int health;
+    public string animName;
     void Update()
     {
+        gameObject.transform.GetChild(1).GetComponent<TextMesh>().text = health.ToString();
+        if (health <= 0)
+            Destroy(gameObject);
         transform.LookAt(player.position);
         if (Vector3.Distance(player.transform.position, transform.position) >= 5)
             GetComponent<NavMeshAgent>().enabled = false;
@@ -24,12 +25,7 @@ public class Enemy : MonoBehaviour
             GetComponent<NavMeshAgent>().enabled = false;
         if (Vector3.Distance(player.transform.position, transform.position) < 2f)
         {
-            GetComponentInChildren<Animator>().SetTrigger("Атака");
+            GetComponentInChildren<Animator>().SetTrigger(animName);
         }
-    }
-    private void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player")
-            hp.GetComponent<Slider>().value -= 5;
     }
 }
