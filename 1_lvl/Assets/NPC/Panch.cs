@@ -8,7 +8,6 @@ public class Panch : MonoBehaviour
     public string nameofAnim;
     public bool isanim = false;
     public GameObject sworsI;
-    public GameObject telPort;
     void Start()
     {
     }
@@ -20,7 +19,6 @@ public class Panch : MonoBehaviour
             {
                 isanim = true;
                 sworsI.SetActive(true);
-                telPort.SetActive(true);
             }
             gameObject.GetComponent<Animator>().SetTrigger(nameofAnim);
         }
