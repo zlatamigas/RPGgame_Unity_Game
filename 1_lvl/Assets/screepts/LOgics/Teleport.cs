@@ -5,9 +5,10 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public GameObject hero;
-    public GameObject pointTeleport;
+    public Transform pointTeleport;
     public GameObject bar;
     public int curlvl;
+
     void Start()
     {
         
@@ -18,10 +19,12 @@ public class Teleport : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Playerhand"))
+        if (other.CompareTag("Player"))
         {
-            hero.transform.position = pointTeleport.transform.position + new Vector3(1,1,1);
             bar.GetComponent<HealthBar>().currentLevel = curlvl;
+            hero.transform.position = pointTeleport.position;
+
         }
     }
+    
 }
