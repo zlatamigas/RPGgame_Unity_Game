@@ -8,14 +8,6 @@ public class Teleport : MonoBehaviour
     public GameObject pointTeleport;
     public GameObject bar;
     public int curlvl;
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Playerhand"))
