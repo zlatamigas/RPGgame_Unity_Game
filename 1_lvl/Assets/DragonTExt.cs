@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextShow : MonoBehaviour
+public class DragonTExt : MonoBehaviour
 {
     public GameObject panel;
-    public GameObject pig;
+    public GameObject panelka;
+    public GameObject king;
 
     void Start()
     {
         panel.SetActive(false);
+        panelka.SetActive(false);
+        king.SetActive(false);
     }
     void Update()
     {
-        if (pig.GetComponent<Panch>().isanim)
-            panel.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            panelka.SetActive(true);
+            king.SetActive(true);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
