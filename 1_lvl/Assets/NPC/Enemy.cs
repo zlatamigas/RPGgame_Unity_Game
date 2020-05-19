@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -12,7 +13,13 @@ public class Enemy : MonoBehaviour
     {
         gameObject.transform.GetChild(1).GetComponent<TextMesh>().text = health.ToString();
         if (health <= 0)
+        {
             Destroy(gameObject);
+            if (animName == "Король!")
+            {
+                SceneManager.LoadScene(4);
+            }
+        }
         transform.LookAt(player.position);
         if (Vector3.Distance(player.transform.position, transform.position) >= 5)
             GetComponent<NavMeshAgent>().enabled = false;

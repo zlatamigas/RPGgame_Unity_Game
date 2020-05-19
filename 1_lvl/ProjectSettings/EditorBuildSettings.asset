@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Predusrorya.unity
     guid: fa9ac6acfdd23da4bbea0e16c9ec99d6
+  - enabled: 1
+    path: Assets/Scenes/regrets!.unity
+    guid: df91644351fd5324ea3c1818268511af
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
