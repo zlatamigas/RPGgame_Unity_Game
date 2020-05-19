@@ -5,6 +5,8 @@ using UnityEngine;
 public class TextShow : MonoBehaviour
 {
     public GameObject panel;
+    public GameObject panelka;
+    public GameObject king;
     public GameObject pig;
     void Start()
     {
@@ -14,6 +16,11 @@ public class TextShow : MonoBehaviour
     {
         if (pig.GetComponent<Panch>().isanim)
             panel.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            panelka.SetActive(true);
+            king.SetActive(true);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
