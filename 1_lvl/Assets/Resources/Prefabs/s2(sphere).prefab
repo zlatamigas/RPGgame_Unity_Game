@@ -45,17 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameItem: "\u0412\u043E\u0437\u0434\u0443\u0448\u043D\u044B\u0439 \u043F\u043E\u0442\u043E\u043A"
-  id: 0
+  id: 20
   countItem: 0
-  isStakeable: 0
+  isStakeable: 1
   descriptionItem: "\u0414\u043B\u044F \u0438\u0437\u0443\u0447\u0435\u043D\u0438\u044F
     \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F 70 xp.\u0423\u0440\u043E\u043D
     15.\n\u041E\u0442\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
     \u043D\u0430 5 \u043A\u043B\u0435\u0442\u043E\u043A.\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430
     20 \u0441\u0435\u043A\u0443\u043D\u0434."
   Icon: {fileID: 21300000, guid: cf6c48cf8aca8924995d9854383bca1e, type: 3}
-  isDroped: 0
-  isRemovebool: 0
+  isDroped: 1
+  isRemovebool: 1
   customEvent:
     m_PersistentCalls:
       m_Calls: []
