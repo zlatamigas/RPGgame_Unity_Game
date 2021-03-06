@@ -1,0 +1,133 @@
+##################################
+#ТАБЛИЦА "ШКОЛЬНИК"
+##################################
+
+#создание таблицы (побочной для удаления) и заполнение данными
+CREATE TABLE pupils(
+  name VARCHAR(50) NOT NULL
+);
+INSERT INTO pupils (name)
+VALUES 	("Владов");
+
+#удаление таблицы;
+DROP TABLE pupils;
+
+#создание таблицы (create)
+CREATE TABLE students(
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	surname VARCHAR(50) NOT NULL, 
+	name VARCHAR(50) NOT NULL, 
+	fathername VARCHAR(50), 
+	gender VARCHAR(1), 
+	nationality VARCHAR(50), 
+	height INT, 
+	weight INT, 
+	birthdate DATE, 
+	phonenumber VARCHAR(16), 
+	homeaddress VARCHAR(50), 
+	grade INT
+);
+
+#переименование таблицы (alter)
+ALTER TABLE students RENAME TO pupils;
+
+#вставка данных в таблицу (insert)
+#вставка данных в таблицу (insert)
+INSERT INTO pupils (surname, name, fathername, gender, nationality, height, weight, birthdate, phonenumber, homeaddress, grade)
+VALUES 	("Владов","Илья","Макарович","м","украинец",165,34,"2002.12.03","+375291234678","ул.Сморина,12-34",7),
+	("Вилонов","Адам","Алексеевич","м","россиянин",132,29,"2005.11.04","+375291114628","ул.Сморина,11-103",3),
+	("Лимова","Анна","Алексеевна","ж","белоруска",150,40,"2003.03.07","+375291072938","ул.Сморина,12-13",5),
+	("Актемин","Илья","Михайлович","м","россиянин",170,34,"2002.11.03","+375299999678","ул.Сморина,10-4",7),
+	("Валов","Андрей","Алексеевич","м","россиянин",127,29,"2005.11.04","+375291114698","ул.Сурганова,11-103",3),
+	("Тумова","Мария","Алексасндровна","ж","белоруска",174,59,"2000.03.07","+375292372938","ул.Одоевского,1-13",5),
+	("Тумова","Марь","Алексасндровна","ж","белоруска",180,60,"2000.03.07","+375292372938","ул.Одоевского,1-13",9),
+	("Тумова","Марья","Алексасндровна","ж","белоруска",180,60,"2000.03.07","+375292372938","ул.Одоевского,1-13",9),
+        ("Вилонова","Ада","Алексеевна","ж","россиянка",120,29,"2002.11.04","+375291334628","ул.Сморина,11-103",2),
+	("Лимова","Алеся","Алексеевна","ж","белоруска",120,30,"2003.09.07","+375297072938","ул.Сморина,12-13",3);
+
+#обновление данных с использованием update
+UPDATE pupils SET grade = 2 WHERE surname = "Валов";
+
+#удаление строк по id и по названию объекта
+DELETE FROM pupils WHERE id = 8;
+DELETE FROM pupils WHERE name = "Марь";
+
+#экспорт базы данных в файлы .sql, .csv.;
+
+
+
+##################################
+#ЗАПРОСЫ (общие)
+##################################
+
+#выборка данных (select) с выводом всех данных по столбцам и строкам,
+SELECT * FROM pupils;
+
+#с сортировкой по id 
+SELECT * FROM pupils ORDER BY id DESC;
+
+#и по имени
+SELECT * FROM pupils ORDER BY name ASC;
+
+#и с выводом последних 5 строк (инструкция limit);
+SELECT * FROM pupils ORDER BY id DESC LIMIT 5;
+
+#выборка данных с фильтрацией (условие where), если id=5;
+SELECT * FROM pupils WHERE id = 5;
+
+#выборка данных с фильтрацией (условие where) и с совпадением по маске, 
+#например все записи, где имя объекта (согласно варианту) начинается на 
+#первую букву вашей фамилии (инструкция like);
+SELECT * FROM pupils WHERE name LIKE "м%";
+
+##################################
+#ЗАПРОСЫ (мои)
+##################################
+
+#Вывести сведения про всех учеников пятых классов.
+SELECT * FROM pupils WHERE grade = 5;
+
+#Используя инструкцию alter, добавить дополнительные столбцы, один из которых school_id (тип integer и содержит идентификаторы школ).
+ALTER TABLE pupils ADD school_id INT;
+
+#Создать таблицу school (id, sch_name, sch_description).
+CREATE TABLE school(
+  id INT, 
+  sch_name VARCHAR(50), 
+  sch_description VARCHAR(50),
+  UNIQUE(id)
+);
+ 
+INSERT INTO school (id, sch_name, sch_description)
+VALUES (312,"High Klementon","High Klementon for High grates!"),
+       (1290,"HS Cherryton", "For cool kids"),
+       (10, "№ 10" ,"Everage high school"),
+       (5, "№ 5" ,"Everage middle school")
+
+UPDATE pupils SET school_id = 1290 WHERE grade = 5;
+UPDATE pupils SET school_id = 5 WHERE grade = 3;
+UPDATE pupils SET school_id = 312 WHERE grade = 7;
+
+
+#Вывести данные обо всех школьниках в форме идентификатор школьника, 
+#фамилия, имя, отчество, дата рождения, класс, название школы. 
+SELECT pupils.id,pupils.surname,pupils.name,pupils.fathername,pupils.birthdate,pupils.grade, school.sch_name as "school" 
+FROM pupils
+LEFT JOIN school
+ON pupils.school_id = school.id;
+
+#подсчет количества школьников с помощью count, если рост >128 см 
+SELECT COUNT(id) FROM pupils WHERE height > 128;
+
+#суммарный вес школьников с помощью sum, если рост = 120 см
+SELECT SUM(weight) FROM pupils WHERE height = 120;
+
+#максимальный и минимальный вес с помощью max и min
+SELECT MIN(weight),MAX(weight) FROM pupils;
+
+#Используя инструкцию inner join вывести полные сведения об школьника и школах для школ с id= 1 и 5.
+SELECT * 
+FROM pupils
+INNER JOIN school
+ON pupils.school_id = school.id
+HAVING school.id IN (1, 5);
